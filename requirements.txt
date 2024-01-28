@@ -1,0 +1,11 @@
+asgiref==3.7.2
+channels==4.0.0
+channels-redis==4.2.0
+Django==5.0.1
+djangorestframework==3.14.0
+msgpack==1.0.7
+pytz==2023.3.post1
+redis==5.0.1
+setuptools==68.2.2
+sqlparse==0.4.4
+wheel==0.41.2
