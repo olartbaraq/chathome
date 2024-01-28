@@ -59,6 +59,11 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = "chathome.urls"
 
+REST_FRAMEWORK = {
+    "NON_FIELD_ERRORS_KEY": "errors",
+    "DEFAULT_AUTHENTICATION_CLASSES": ["user_control.tokenauth.JWTAuthentication"],
+}
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",

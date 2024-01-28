@@ -23,7 +23,7 @@ class SignUpSerializer(serializers.ModelSerializer):
         return user
 
 
-class LoginSerializer(serializers.ModelSerializer):
+class LoginSerializer(serializers.Serializer):
     """_summary_
 
     Args:
