@@ -36,7 +36,7 @@ class JWTAuthentication(BaseAuthentication):
             raise ExpiredSignatureError("Token has expired")
 
     def extract_token(self, request):
-        auth_header = request.headers.get("Autorization")
+        auth_header = request.headers.get("Authorization")
         if auth_header and auth_header.startswith("Bearer "):
             return auth_header.split(" ")[1]
         return None

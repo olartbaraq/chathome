@@ -56,7 +56,3 @@ class LoginSerializer(serializers.Serializer):
             "email": user.email,
             "id": user.id,
         }
-
-    class Meta:
-        model = get_user_model
-        fields = ["email", "password"]

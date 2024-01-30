@@ -32,6 +32,7 @@ AUTH_USER_MODEL = "user_control.User"
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -80,7 +81,17 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "chathome.wsgi.application"
+# WSGI_APPLICATION = "chathome.wsgi.application"
+ASGI_APPLICATION = "chathome.asgi.application"
+
+CHANNEL_LAYER = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
 
 
 # Database
