@@ -85,7 +85,7 @@ TEMPLATES = [
 # WSGI_APPLICATION = "chathome.wsgi.application"
 ASGI_APPLICATION = "chathome.asgi.application"
 
-CHANNEL_LAYER = {
+CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {

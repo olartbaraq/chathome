@@ -8,6 +8,7 @@ from rest_framework.request import Request
 from rest_framework.permissions import IsAuthenticated
 from .models import StoredEmail
 from .serializers import StoredEmailSerializer
+from django.db import IntegrityError
 
 User = get_user_model()
 
@@ -45,11 +46,17 @@ def get_user(request: Request, email: str):
 def store_email(request):
     email = request.data.get("email")
     if email:
-        stored_email = StoredEmail(email=email)
-        stored_email.save()
-        return Response(
-            {"message": "Email stored successfully"}, status=status.HTTP_201_CREATED
-        )
+        try:
+            stored_email = StoredEmail(email=email)
+            stored_email.save()
+            return Response(
+                {"message": "Email stored successfully"}, status=status.HTTP_201_CREATED
+            )
+        except IntegrityError as e:
+            return Response(
+                {"error": f"You have added {email} already"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
     else:
         return Response(
             {"error": "Email not provided"}, status=status.HTTP_400_BAD_REQUEST
