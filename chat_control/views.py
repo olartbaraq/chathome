@@ -6,7 +6,8 @@ from chat_control.serializers import UserGetSerializer
 from rest_framework.response import Response
 from rest_framework.request import Request
 from rest_framework.permissions import IsAuthenticated
-
+from .models import StoredEmail
+from .serializers import StoredEmailSerializer
 
 User = get_user_model()
 
@@ -34,6 +35,31 @@ def get_user(request: Request, email: str):
         return Response(serializer.data, status=status.HTTP_200_OK)
     except Exception as e:
         return Response(
-            {"error": f"Error listing user {email}"},
+            {"error": f"{email} does not exist"},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def store_email(request):
+    email = request.data.get("email")
+    if email:
+        stored_email = StoredEmail(email=email)
+        stored_email.save()
+        return Response(
+            {"message": "Email stored successfully"}, status=status.HTTP_201_CREATED
+        )
+    else:
+        return Response(
+            {"error": "Email not provided"}, status=status.HTTP_400_BAD_REQUEST
+        )
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def list_emails(request):
+    if request.method == "GET":
+        stored_emails = StoredEmail.objects.all()
+        serializer = StoredEmailSerializer(stored_emails, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)

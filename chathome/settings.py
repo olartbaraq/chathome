@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "user_control",
     "drf_yasg",
     "corsheaders",
+    "chat_control",
 ]
 
 MIDDLEWARE = [
