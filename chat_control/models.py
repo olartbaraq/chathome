@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from django.contrib.auth import get_user_model
 
@@ -7,6 +8,7 @@ User = get_user_model()
 
 
 class StoredEmail(models.Model):
+    user = models.IntegerField(default=1)
     email = models.EmailField(unique=True)
 
     def __str__(self):

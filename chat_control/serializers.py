@@ -14,7 +14,8 @@ class UserGetSerializer(serializers.ModelSerializer):
 class StoredEmailSerializer(serializers.ModelSerializer):
     class Meta:
         model = StoredEmail
-        fields = ["email"]
+        fields = ["email", "user"]
+        extra_kwargs = {"user": {"read_only": True}}
 
 
 class MessageSerializer(serializers.ModelSerializer):

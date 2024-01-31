@@ -49,7 +49,11 @@ def store_email(request):
     email = request.data.get("email")
     if email:
         try:
-            stored_email = StoredEmail(email=email)
+            user_obj = get_object_or_404(User, email=email)
+            serializer = UserGetSerializer(user_obj)
+            stored_email = StoredEmail(
+                email=serializer.data["email"], user=serializer.data["id"]
+            )
             stored_email.save()
             return Response(
                 {"message": "Email stored successfully"}, status=status.HTTP_201_CREATED
