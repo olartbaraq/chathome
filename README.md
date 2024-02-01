@@ -1,6 +1,6 @@
 To run this project locally
 
-Step 1: git clone git@github.com:olartbaraq/chathome.git (if using ssh)
+Step 1: git clone git@github.com:olartbaraq/chathome.git (if using ssh) and activate a new python environment
 
 Step 2: install redis server - ubuntu - sudo apt install redis-server && sudo systemctl restart redis.service - windows - use docker compose file with docker GUI app - macOS - brew install redis && brew services start redis
 
