@@ -12,4 +12,6 @@ Step 5: run python manage.py migrate
 
 Step 6: run python manage.py runserver
 
+Step 7: navigate to settings.py and change redis host to 127.0.0.1
+
 Proceed to run the Frontend repo after this
