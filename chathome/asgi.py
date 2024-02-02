@@ -18,11 +18,11 @@ from chat_control.channels_middleware import JWTWebsocketMiddleware
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "chathome.settings")
 django.setup()
 
-application = get_asgi_application()
+django_asgi_app = get_asgi_application()
 
 application = ProtocolTypeRouter(
     {
-        "http": application,
+        "http": django_asgi_app,
         "websocket": JWTWebsocketMiddleware(
             AuthMiddlewareStack(URLRouter(websocket_urlpatterns))
         ),
