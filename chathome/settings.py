@@ -96,7 +96,17 @@ ASGI_APPLICATION = "chathome.asgi.application"
 # }
 
 CHANNEL_LAYERS = {
-    "default": {"BACKEND": "channels.layers.InMemoryChannelLayer"},
+    "default": {
+        "BACKEND": "channels_redis.pubsub.RedisPubSubChannelLayer",
+        "CONFIG": {
+            "hosts": [
+                {
+                    "address": "rediss://:p61a55355f8d013179c9ab94c5795dddb51c30bfd780097d86017dbec2de9d9bf@ec2-3-213-237-164.compute-1.amazonaws.com:16300",  # "REDIS_TLS_URL"
+                    "ssl_cert_reqs": None,
+                }
+            ]
+        },
+    }
 }
 
 
