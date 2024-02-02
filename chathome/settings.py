@@ -91,7 +91,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [("10.1.91.212", 6379)],
+            "hosts": [("chat-home-6d7818406fa3.herokuapp.com", 6379)],
         },
     },
 }
