@@ -33,7 +33,6 @@ AUTH_USER_MODEL = "user_control.User"
 # Application definition
 
 INSTALLED_APPS = [
-    "daphne",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -45,6 +44,8 @@ INSTALLED_APPS = [
     "drf_yasg",
     "corsheaders",
     "chat_control",
+    "daphne",
+    "channels",
 ]
 
 MIDDLEWARE = [
