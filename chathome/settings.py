@@ -92,6 +92,7 @@ CHANNEL_LAYERS = {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
             "hosts": [("chat-home-6d7818406fa3.herokuapp.com", 6379)],
+            "websocket_timeout": 300,
         },
     },
 }
