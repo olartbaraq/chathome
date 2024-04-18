@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-@5k5kji@5^vqc7h1(j2msp4i0vk%!()t_ndf4r(yi(47b61-h+"
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [".herokuapp.com", "127.0.0.1"]
+ALLOWED_HOSTS = [".herokuapp.com", "127.0.0.1", ".vercel.app"]
 
 AUTH_USER_MODEL = "user_control.User"
 
@@ -101,7 +102,7 @@ CHANNEL_LAYERS = {
         "CONFIG": {
             "hosts": [
                 {
-                    "address": "rediss://:p61a55355f8d013179c9ab94c5795dddb51c30bfd780097d86017dbec2de9d9bf@ec2-3-213-237-164.compute-1.amazonaws.com:16300",  # "REDIS_TLS_URL"
+                    "address": config("ADDRESS"),  # "REDIS_TLS_URL"
                     "ssl_cert_reqs": None,
                 }
             ]
